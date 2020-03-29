@@ -122,7 +122,7 @@ def decoding_block(
 # The third layer contains all zeros in all cases (trivial)
 
 
-def DeepVOG_net(input_shape=(1080, 1980, 3), filter_size=(3, 3)):
+def DeepVOG_net(input_shape=(1080, 1920, 3), filter_size=(3, 3)):
 
     X_input = Input(input_shape)
 
