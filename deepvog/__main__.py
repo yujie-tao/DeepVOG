@@ -79,7 +79,7 @@ parser.add_argument(
     "-vs",
     "--vidshape",
     help=ori_vid_shape_help,
-    default="(240, 320)",
+    default="(1080, 1920)",
     type=str,
     metavar=("INT,INT"),
 )
