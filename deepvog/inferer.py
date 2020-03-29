@@ -141,8 +141,8 @@ class gaze_inferer(object):
         initial_frame, final_frame = 0, vid_m
         final_batch_size = vid_m % batch_size
         final_batch_idx = vid_m - final_batch_size
-        X_batch = np.zeros((batch_size, 1080, 1920, 3))
-        X_batch_final = np.zeros((vid_m % batch_size, 1080, 1920, 3))
+        X_batch = np.zeros((batch_size, 240, 320, 3))
+        X_batch_final = np.zeros((vid_m % batch_size, 240, 320, 3))
 
         # Start looping for batch-wise processing
         for idx, frame in enumerate(vreader.nextFrame()):
@@ -181,7 +181,7 @@ class gaze_inferer(object):
                     )
 
                 # Renew X_batch for next batch
-                X_batch = np.zeros((batch_size, 1080, 1920, 3))
+                X_batch = np.zeros((batch_size, 240, 320, 3))
                 X_batch[mini_batch_idx, :, :, :] = frame_preprocessed
 
             # Within the final batch but not yet reaching the last index, stack
@@ -479,7 +479,7 @@ class gaze_inferer(object):
         video_name_root, ext = os.path.splitext(video_name_with_ext)
         vreader = skv.FFmpegReader(video_src)
         m, w, h, channels = vreader.getShape()
-        image_scaling_factor = np.linalg.norm((1080, 1920)) / np.linalg.norm(
+        image_scaling_factor = np.linalg.norm((240, 320)) / np.linalg.norm(
             (h, w)
         )
         shape_correct = self._inspectVideoShape(w, h)
@@ -508,7 +508,7 @@ class gaze_inferer(object):
 
     @staticmethod
     def _inspectVideoShape(w, h):
-        if (w, h) == (1080, 1920):
+        if (w, h) == (240, 320):
             return True
         else:
             return False
@@ -528,12 +528,12 @@ class gaze_inferer(object):
         Returns:
             output_img (numpy array): processed grayscale image with shape ( 240, 320, 1) and values float [0,1]
         """
-        output_img = np.zeros((1080, 1920, 3))
+        output_img = np.zeros((240, 320, 3))
         img = img / 255
         img = rgb2gray(img)
         if not shape_correct:
-            img = resize(img, (1080, 1920))
-        output_img[:, :, :] = img.reshape(1080, 1920, 1)
+            img = resize(img, (240, 320))
+        output_img[:, :, :] = img.reshape(240, 320, 1)
         return output_img
 
     @staticmethod

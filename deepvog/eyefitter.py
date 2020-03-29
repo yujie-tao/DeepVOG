@@ -24,11 +24,7 @@ All calculations are in camera frame (conversion would be commented)
 
 class SingleEyeFitter(object):
     def __init__(
-        self,
-        focal_length,
-        pupil_radius,
-        initial_eye_z,
-        image_shape=(1080, 1920),
+        self, focal_length, pupil_radius, initial_eye_z, image_shape=(240, 320),
     ):
         self.focal_length = focal_length
         self.image_shape = image_shape
