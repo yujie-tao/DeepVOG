@@ -164,7 +164,6 @@ else:
             )
         if args.infer is not None:
             vid_scr_inference, eyemodel_load, result_output = args.infer
-            print(output_record_path)
             jobman.infer(
                 vid_path=vid_scr_inference,
                 eyeball_model_path=eyemodel_load,

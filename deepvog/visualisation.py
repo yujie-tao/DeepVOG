@@ -164,7 +164,6 @@ class VideoManager:
         confidence,
         consistence,
     ):
-        print(pupil2D_h)
         self.results_recorder.write(
             "%d,%f,%f,%f,%f,%f,%f,%f,%f,%f\n"
             % (
@@ -183,7 +182,6 @@ class VideoManager:
 
     def _initialize_results_recorder(self):
         if self.output_record_flag:
-            print("yes")
             self.results_recorder.write(
                 "frame,pupil2D_x,pupil2D_y,pupil2D_w,pupil2D_h,pupil2D_r,gaze_x,gaze_y,confidence,consistence\n"
             )
